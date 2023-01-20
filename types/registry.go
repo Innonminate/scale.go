@@ -160,6 +160,7 @@ func init() {
 	registry["[u8; 8]"] = &FixedU8{FixedLength: 8}
 	registry["[u8; 4]"] = &FixedU8{FixedLength: 4}
 	registry["[u8; 2]"] = &FixedU8{FixedLength: 2}
+	registry["[u8; 104]"] = &FixedU8{FixedLength: 104}
 	registry["[u8; 256]"] = &FixedU8{FixedLength: 256}
 	registry["[u128; 3]"] = &FixedArray{FixedLength: 3, SubType: "u128"}
 	TypeRegistryLock.Lock()

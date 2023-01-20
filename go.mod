@@ -10,3 +10,5 @@ require (
 	golang.org/x/crypto v0.0.0-20200510223506-06a226fb4e37
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
+
+replace github.com/itering/scale.go => github.com/Innonminate/scale.go
