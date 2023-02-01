@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type Call struct {

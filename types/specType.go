@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/itering/scale.go/utiles/encointer"
+	"github.com/Innonminate/scale.go/utiles/encointer"
 	"github.com/shopspring/decimal"
 )
 

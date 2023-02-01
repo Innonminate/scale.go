@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 
-	"github.com/itering/scale.go/types/scaleBytes"
+	"github.com/Innonminate/scale.go/types/scaleBytes"
 )
 
 type Float struct {

@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 
 	"github.com/huandu/xstrings"
-	"github.com/itering/scale.go/types/convert"
-	"github.com/itering/scale.go/types/scaleBytes"
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/types/convert"
+	"github.com/Innonminate/scale.go/types/scaleBytes"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type MetadataModules struct {

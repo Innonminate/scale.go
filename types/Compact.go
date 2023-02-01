@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"io"
 
-	"github.com/itering/scale.go/types/scaleBytes"
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/types/scaleBytes"
+	"github.com/Innonminate/scale.go/utiles"
 	"github.com/shopspring/decimal"
 )
 

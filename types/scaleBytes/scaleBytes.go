@@ -1,7 +1,7 @@
 package scaleBytes
 
 import (
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type ScaleBytes struct {

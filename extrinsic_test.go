@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/itering/scale.go"
-	"github.com/itering/scale.go/source"
-	"github.com/itering/scale.go/types"
-	"github.com/itering/scale.go/types/scaleBytes"
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go"
+	"github.com/Innonminate/scale.go/source"
+	"github.com/Innonminate/scale.go/types"
+	"github.com/Innonminate/scale.go/types/scaleBytes"
+	"github.com/Innonminate/scale.go/utiles"
 	"github.com/shopspring/decimal"
 	"github.com/stretchr/testify/assert"
 )

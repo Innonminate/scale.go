@@ -2,8 +2,8 @@ package ethereum
 
 import (
 	"fmt"
-	"github.com/itering/scale.go/utiles"
-	"github.com/itering/scale.go/utiles/crypto/keccak"
+	"github.com/Innonminate/scale.go/utiles"
+	"github.com/Innonminate/scale.go/utiles/crypto/keccak"
 	"strings"
 )
 

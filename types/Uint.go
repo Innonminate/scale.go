@@ -7,8 +7,8 @@ import (
 	"math/big"
 
 	"github.com/huandu/xstrings"
-	"github.com/itering/scale.go/utiles"
-	"github.com/itering/scale.go/utiles/uint128"
+	"github.com/Innonminate/scale.go/utiles"
+	"github.com/Innonminate/scale.go/utiles/uint128"
 	"github.com/shopspring/decimal"
 )
 

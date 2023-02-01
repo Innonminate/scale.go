@@ -1,6 +1,6 @@
 package types
 
-import "github.com/itering/scale.go/utiles"
+import "github.com/Innonminate/scale.go/utiles"
 
 type FixedU8 struct {
 	ScaleDecoder

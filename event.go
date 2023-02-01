@@ -3,9 +3,9 @@ package scalecodec
 import (
 	"fmt"
 
-	scaleType "github.com/itering/scale.go/types"
-	"github.com/itering/scale.go/types/scaleBytes"
-	"github.com/itering/scale.go/utiles"
+	scaleType "github.com/Innonminate/scale.go/types"
+	"github.com/Innonminate/scale.go/types/scaleBytes"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type EventsDecoder struct {

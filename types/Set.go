@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/itering/scale.go/types/scaleBytes"
+	"github.com/Innonminate/scale.go/types/scaleBytes"
 )
 
 type Set struct {

@@ -3,7 +3,7 @@ package types
 import (
 	"strings"
 
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type Result struct {
