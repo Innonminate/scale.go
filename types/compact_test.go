@@ -2,6 +2,7 @@ package types
 
 import (
 	"testing"
+	"math/big"
 
 	"github.com/Innonminate/scale.go/types/scaleBytes"
 	"github.com/Innonminate/scale.go/utiles"
@@ -14,6 +15,14 @@ func decode(encodedVal string, typeDescr string) interface{} {
 	return decoder.ProcessAndUpdateData(typeDescr)
 }
 
+func bigFromStr(t *testing.T, strint string) (*big.Int) {
+	bigInt := new(big.Int)
+	bigInt, ok := bigInt.SetString(strint, 10)
+	if !ok {
+		t.Error("bigInt wasn't created")
+	}
+	return bigInt
+}
 
 // uint8  : 0 to 255 
 // uint16 : 0 to 65535 
@@ -40,6 +49,7 @@ func TestDecodeCompactBase(t *testing.T) {
 	raw13 := "0300000040"
 	raw14 := "03ffffffff"
 	raw15 := "13ffffffffffffffff"
+
 	assert.EqualValues(t, 0, int(decode(raw1, "Compact<u8>").(uint64)))
 	assert.EqualValues(t, 1, int(decode(raw2, "Compact<u8>").(uint64)))
 	assert.EqualValues(t, 42, int(decode(raw3, "Compact<u8>").(uint64)))
@@ -73,6 +83,7 @@ func TestEncodeCompactBase(t *testing.T) {
 	val13 := 1073741824
 	val14 := 4294967295
 	val15 := uint64(18446744073709551615)
+
 	assert.EqualValues(t, "00", Encode("Compact<u8>", val1))
 	assert.EqualValues(t, "04", Encode("Compact<u8>", val2))
 	assert.EqualValues(t, "a8", Encode("Compact<u8>", val3))
@@ -88,4 +99,36 @@ func TestEncodeCompactBase(t *testing.T) {
 	assert.EqualValues(t, "0300000040", Encode("Compact<u16>", val13))
 	assert.EqualValues(t, "03ffffffff", Encode("Compact<u32>", val14))
 	assert.EqualValues(t, "13ffffffffffffffff", Encode("Compact<u64>", val15))
+}
+
+func TestDecodeCompactBig(t *testing.T) {
+	raw1 := "dec80700"
+	raw2 := "76a52a02"
+	raw3 := "0b86db86912e01"
+	raw4 := "13ffffffffffffffff"
+	raw5 := "37d20a3fce965fbcacb8f3dbc07520c9a003"
+	raw6 := "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+
+	assert.EqualValues(t, bigFromStr(t, "127543"), decode(raw1, "Compact<u64>").(uint64))
+	assert.EqualValues(t, bigFromStr(t, "9087325"), decode(raw2, "Compact<u64>").(uint64))
+	assert.EqualValues(t, bigFromStr(t, "1299521657734"), decode(raw3, "Compact<u64>").(uint64))
+	assert.EqualValues(t, bigFromStr(t, "18446744073709551615"), decode(raw4, "Compact<u64>").(uint64))
+	assert.EqualValues(t, bigFromStr(t, "1234567890123456789012345678901234567890"), decode(raw5, "Compact<u64>").(uint64))
+	assert.EqualValues(t, bigFromStr(t, "224945689727159819140526925384299092943484855915095831655037778630591879033574393515952034305194542857496045531676044756160413302774714984450425759043258192756735"), decode(raw6, "Compact<u64>").(uint64))
+}
+
+func TestEncodeCompactBig(t *testing.T) {
+	val1 := bigFromStr(t, "127543")
+	val2 := bigFromStr(t, "9087325")
+	val3 := bigFromStr(t, "1299521657734")
+	val4 := bigFromStr(t, "18446744073709551615")
+	val5 := bigFromStr(t, "1234567890123456789012345678901234567890")
+	val6 := bigFromStr(t, "224945689727159819140526925384299092943484855915095831655037778630591879033574393515952034305194542857496045531676044756160413302774714984450425759043258192756735")
+
+	assert.EqualValues(t, "dec80700", Encode("Compact<u64>", val1))
+	assert.EqualValues(t, "76a52a02", Encode("Compact<u64>", val2))
+	assert.EqualValues(t, "0b86db86912e01", Encode("Compact<u64>", val3))
+	assert.EqualValues(t, "13ffffffffffffffff", Encode("Compact<u64>", val4))
+	assert.EqualValues(t, "37d20a3fce965fbcacb8f3dbc07520c9a003", Encode("Compact<u64>", val5))
+	assert.EqualValues(t, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", Encode("Compact<u64>", val6))
 }
