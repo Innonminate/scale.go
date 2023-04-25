@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"io"
+	"math/big"
 
 	"github.com/Innonminate/scale.go/types/scaleBytes"
 	"github.com/Innonminate/scale.go/utiles"
@@ -83,22 +84,22 @@ func (c *Compact) Encode(value interface{}) string {
 		compactValue = decimal.RequireFromString(v)
 	}
 	bs := make([]byte, 4)
-	if compactValue.IntPart() <= 63 {
+	bigCompactValue := compactValue.BigInt()
+	if new(big.Int).SetInt64(63).Cmp(bigCompactValue) >= 0 {
 		binary.LittleEndian.PutUint32(bs, uint32(compactValue.IntPart()<<2))
 		c.Data.Data = bs[0:1]
-	} else if compactValue.IntPart() <= 16383 {
+	} else if new(big.Int).SetInt64(16383).Cmp(bigCompactValue) >= 0 {
 		binary.LittleEndian.PutUint32(bs, uint32(compactValue.IntPart()<<2)|1)
 		c.Data.Data = bs[0:2]
-	} else if compactValue.IntPart() <= 1073741823 {
+	} else if new(big.Int).SetInt64(1073741823).Cmp(bigCompactValue) >= 0 {
 		binary.LittleEndian.PutUint32(bs, uint32(compactValue.IntPart()<<2)|2)
 		c.Data.Data = bs
 	} else {
-		v := compactValue.BigInt()
-		numBytes := len(v.Bytes())
+		buf := bigCompactValue.Bytes()
+		numBytes := len(buf)
 		if numBytes > 255 || uint8(numBytes-4) > 63 {
 			return ""
 		}
-		buf := v.Bytes()
 		Reverse(buf)
 		c.Data.Data = append([]byte{uint8(numBytes-4)<<2 + 3}, buf...)
 	}
