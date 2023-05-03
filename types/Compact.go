@@ -71,7 +71,8 @@ func (c *Compact) Encode(value interface{}) string {
 	var compactValue decimal.Decimal
 	switch v := value.(type) {
 	case uint64:
-		compactValue = decimal.New(int64(v), 0)
+		bigInt := new(big.Int).SetUint64(v)
+		compactValue = decimal.NewFromBigInt(bigInt, 0)
 	case decimal.Decimal:
 		compactValue = v
 	case int64:
