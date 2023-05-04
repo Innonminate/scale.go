@@ -1,9 +1,7 @@
 package types
 
 import (
-	"bytes"
 	"encoding/binary"
-	"io"
 	"math/big"
 
 	"github.com/Innonminate/scale.go/types/scaleBytes"
@@ -111,60 +109,4 @@ func Reverse(b []byte) {
 	for i, j := 0, len(b)-1; i < j; i, j = i+1, j-1 {
 		b[i], b[j] = b[j], b[i]
 	}
-}
-
-type CompactU32 struct {
-	Compact
-	Reader io.Reader
-}
-
-func (c *CompactU32) Init(data scaleBytes.ScaleBytes, option *ScaleDecoderOption) {
-	c.TypeString = "Compact<u32>"
-	c.ScaleDecoder.Init(data, option)
-}
-
-func (c *CompactU32) Process() {
-	c.ProcessCompactBytes()
-	buf := &bytes.Buffer{}
-	c.Reader = buf
-	_, _ = buf.Write(c.CompactBytes)
-	b := make([]byte, 8)
-	_, _ = c.Reader.Read(b)
-	c.Value = int(binary.LittleEndian.Uint64(b))
-	if c.CompactLength <= 4 {
-		c.Value = int(c.Value.(int)) / 4
-	}
-
-}
-
-func (c *CompactU32) Encode(value interface{}) string {
-	var i int
-	switch v := value.(type) {
-	case int:
-		i = v
-	case decimal.Decimal:
-		i = int(v.IntPart())
-	case uint32:
-		i = int(v)
-	case int64:
-		i = int(v)
-	case uint16:
-		i = int(v)
-	case float64:
-		i = int(v)
-	}
-	if i <= 63 {
-		bs := make([]byte, 4)
-		binary.LittleEndian.PutUint32(bs, uint32(i<<2))
-		c.Data.Data = bs[0:1]
-	} else if i <= 16383 {
-		bs := make([]byte, 4)
-		binary.LittleEndian.PutUint32(bs, uint32(i<<2)|1)
-		c.Data.Data = bs[0:2]
-	} else if i <= 1073741823 {
-		bs := make([]byte, 4)
-		binary.LittleEndian.PutUint32(bs, uint32(i<<2)|2)
-		c.Data.Data = bs
-	}
-	return utiles.BytesToHex(c.Data.Data)
 }

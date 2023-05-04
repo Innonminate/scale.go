@@ -113,7 +113,6 @@ func TestBalance(t *testing.T) {
 	assert.Equal(t, raw, Encode("Balance", m.ProcessAndUpdateData("Balance")))
 }
 
-//
 func TestRegistration(t *testing.T) {
 	raw := "04010000000200a0724e180900000000000000000000000d505552455354414b452d30310e507572655374616b65204c74641b68747470733a2f2f7777772e707572657374616b652e636f6d2f000000000d40707572657374616b65636f"
 	m := ScaleDecoder{}
@@ -283,12 +282,6 @@ func TestTypeIsStruct(t *testing.T) {
 		}
 		assert.Equal(t, result, map[string]interface{}{"assets": "MultiAssetFilterV1", "beneficiary": "MultiLocationV1", "maxAssets": "u32"})
 	}
-}
-
-func TestCompactU32_Encode(t *testing.T) {
-	compactU32 := CompactU32{}
-	compactU32.Encode(100)
-	assert.Equal(t, "0x9101", compactU32.Data.String())
 }
 
 func TestTupleDisassemble(t *testing.T) {

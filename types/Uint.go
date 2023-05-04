@@ -6,9 +6,9 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/huandu/xstrings"
 	"github.com/Innonminate/scale.go/utiles"
 	"github.com/Innonminate/scale.go/utiles/uint128"
+	"github.com/huandu/xstrings"
 	"github.com/shopspring/decimal"
 )
 

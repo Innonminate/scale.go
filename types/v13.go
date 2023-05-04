@@ -6,10 +6,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/huandu/xstrings"
 	"github.com/Innonminate/scale.go/types/convert"
 	"github.com/Innonminate/scale.go/types/scaleBytes"
 	"github.com/Innonminate/scale.go/utiles"
+	"github.com/huandu/xstrings"
 )
 
 type MetadataV13Decoder struct {

@@ -63,7 +63,6 @@ func init() {
 		&WeakBoundedVec{},
 		&Set{},
 		&Compact{},
-		&CompactU32{},
 		&Bool{},
 		&HexBytes{},
 		&Moment{},
@@ -141,8 +140,6 @@ func init() {
 			registry[strings.ToLower(valueOf.Type().Name())] = class
 		}
 	}
-	registry["compact<u32>"] = &CompactU32{}
-	registry["compact<moment>"] = &CompactMoment{}
 	registry["str"] = &String{}
 	registry["hash"] = &H256{}
 	registry["blockhash"] = &H256{}

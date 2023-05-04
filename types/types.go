@@ -9,11 +9,11 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/huandu/xstrings"
 	"github.com/Innonminate/scale.go/types/scaleBytes"
 	"github.com/Innonminate/scale.go/utiles"
 	"github.com/Innonminate/scale.go/utiles/crypto/ethereum"
 	"github.com/Innonminate/scale.go/utiles/uint128"
+	"github.com/huandu/xstrings"
 	"github.com/shopspring/decimal"
 )
 
@@ -83,17 +83,6 @@ func (e *Era) Process() {
 }
 
 type EraExtrinsic struct{ Era }
-
-type CompactMoment struct {
-	CompactU32
-}
-
-func (m *CompactMoment) Process() {
-	m.CompactU32.Process()
-	if m.Value.(int) > 10000000000 {
-		m.Value = m.Value.(int) / 1000
-	}
-}
 
 type Moment struct {
 	U64

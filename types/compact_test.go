@@ -62,9 +62,9 @@ func TestDecodeCompactBase(t *testing.T) {
 	assert.EqualValues(t, 16383, int(decode(raw9, "Compact<u16>").(uint16)))
 	assert.EqualValues(t, 16384, int(decode(raw10, "Compact<u16>").(uint16)))
 	assert.EqualValues(t, 65535, int(decode(raw11, "Compact<u16>").(uint16)))
-	assert.EqualValues(t, 1073741823, int(decode(raw12, "Compact<u16>").(uint16)))
-	assert.EqualValues(t, 1073741824, int(decode(raw13, "Compact<u16>").(uint16)))
-	assert.EqualValues(t, 4294967295, decode(raw14, "Compact<u32>").(int))
+	assert.EqualValues(t, 1073741823, int(decode(raw12, "Compact<u32>").(uint64)))
+	assert.EqualValues(t, 1073741824, int(decode(raw13, "Compact<u32>").(uint32)))
+	assert.EqualValues(t, 4294967295, decode(raw14, "Compact<u32>").(uint32))
 	assert.EqualValues(t, uint64(18446744073709551615), decode(raw15, "Compact<u64>").(uint64))
 }
 
