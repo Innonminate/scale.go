@@ -6,9 +6,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/itering/scale.go/source"
-	"github.com/itering/scale.go/types/convert"
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/source"
+	"github.com/Innonminate/scale.go/types/convert"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type PortableType struct {

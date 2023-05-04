@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/itering/scale.go/utiles"
+	"github.com/Innonminate/scale.go/utiles"
 )
 
 type Option struct {

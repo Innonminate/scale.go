@@ -5,7 +5,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/itering/scale.go/source"
+	"github.com/Innonminate/scale.go/source"
 )
 
 func TestRegCustomTypesConcurrency(t *testing.T) {
